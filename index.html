@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image with Glowing Swaying Snowflakes</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevents scrolling */
+        }
+
+        .bg-image {
+            background-image: url('DMBG.png');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.9;
+            pointer-events: none;
+            animation: fall linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-20px);
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-image"></div>
+<script>
+    const numFlakes = 100; // Number of snowflakes
+    for (let i = 0; i < numFlakes; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.style.width = `${Math.random() * 10 + 2}px`;
+        snowflake.style.height = snowflake.style.width;
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(snowflake);
+    }
+</script>
+</body>
+</html>
